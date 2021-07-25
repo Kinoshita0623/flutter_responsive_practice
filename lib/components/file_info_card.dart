@@ -46,9 +46,62 @@ class FileInfoCard extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          
+          ProgressLine(color: info.color, percentage: info.percentage),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "${info.filesCount} Files",
+                style: Theme.of(context)
+                  .textTheme
+                  .caption!
+                  .copyWith(color: Colors.white70)
+              ),
+              Text(
+                info.totalStorage,
+                style: Theme.of(context)
+                  .textTheme
+                  .caption!
+                  .copyWith(color: Colors.white)
+              )
+            ],
+          )
+
         ],
       ),
+    );
+  }
+}
+
+class ProgressLine extends StatelessWidget {
+  final Color? color;
+  final int percentage;
+  const ProgressLine({required this.color, required this.percentage});
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          width: double.infinity,
+          height: 5,
+          decoration: BoxDecoration(
+            color: color?.withOpacity(0.1),
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+        ),
+        LayoutBuilder(
+          builder: (BuildContext context, constraints) {
+            return Container(
+              width: constraints.maxWidth * (percentage / 100),
+              height: 5,
+              decoration: BoxDecoration(
+                color: color,
+                borderRadius: BorderRadius.all(Radius.circular(10))
+              ),
+            );
+          }
+        )
+      ],
     );
   }
 }
