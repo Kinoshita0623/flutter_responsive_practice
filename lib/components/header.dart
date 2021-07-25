@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_practice/responsive.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../constants.dart';
 
@@ -23,7 +24,8 @@ class Header extends StatelessWidget {
           ),
         if(!Responsive.isMobile(context))
           Spacer(flex: Responsive.isDesktop(context) ? 2 : 1),
-        Expanded(child: ProfileCard(),)
+        Expanded(child: SearchField()),
+        ProfileCard(),
       ],
     );
   }
@@ -36,7 +38,7 @@ class ProfileCard extends StatelessWidget {
       margin: EdgeInsets.only(left: defaultPadding),
       padding: EdgeInsets.symmetric(
         horizontal: defaultPadding,
-        vertical: defaultPadding
+        vertical: defaultPadding / 2.7,
       ),
       decoration: BoxDecoration(
         color: secondaryColor,
@@ -54,6 +56,35 @@ class ProfileCard extends StatelessWidget {
           Icon(Icons.keyboard_arrow_down)
         ],
       ),
+    );
+  }
+}
+
+class SearchField extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      decoration: InputDecoration(
+        hintText: "Search...",
+        fillColor: secondaryColor,
+        filled: true,
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: const BorderRadius.all(Radius.circular(10))
+        ),
+        suffixIcon: InkWell(
+          onTap: (){},
+          child: Container(
+            padding: EdgeInsets.all(defaultPadding * 0.75),
+            margin: EdgeInsets.symmetric(horizontal: defaultPadding / 2),
+            decoration: BoxDecoration(
+              color: primaryColor,
+              borderRadius: const BorderRadius.all(Radius.circular(10)),
+            ),
+            child: SvgPicture.asset("assets/icons/Search.svg"),
+          )
+        )
+      )
     );
   }
 }
