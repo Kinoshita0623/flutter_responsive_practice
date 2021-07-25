@@ -2,6 +2,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_practice/components/my_files.dart';
+import 'package:flutter_layout_practice/components/recent_files.dart';
 import 'package:flutter_layout_practice/components/storage_details.dart';
 import 'package:flutter_layout_practice/constants.dart';
 import 'package:flutter_layout_practice/responsive.dart';
@@ -36,6 +37,9 @@ class DashboardScreen extends StatelessWidget {
                     children: [
                       MyFiles(),
                       SizedBox(height: defaultPadding,),
+                      RecentFiles(),
+                      if(Responsive.isMobile(context))
+                        SizedBox(height: defaultPadding),
                       if(Responsive.isMobile(context))
                         StorageDetails()
                     ],
