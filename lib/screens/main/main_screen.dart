@@ -3,7 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_practice/responsive.dart';
 import 'package:flutter_layout_practice/screens/dashboard/dashboard_screen.dart';
-import 'package:flutter_layout_practice/screens/main/side_menu.dart';
+
+import '../../side_menu.dart';
 
 class MainScreen extends StatefulWidget {
   @override
